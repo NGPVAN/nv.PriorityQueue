@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QueueDemo" Class="ModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=QueueDemo;Integrated Security=True" SettingsObjectName="nv.PriorityQueue.Properties.Settings" SettingsPropertyName="QueueDemoConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="jobs.Type" Member="Types">
+    <Type Name="Type">
+      <Column Name="Id" Type="System.Int16" DbType="SmallInt NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(256) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Function Name="jobs.usp_Dequeue" Method="usp_Dequeue">
+    <ElementType Name="usp_DequeueResult">
+      <Column Name="Id" Type="System.Int64" DbType="BigInt NOT NULL" CanBeNull="false" />
+      <Column Name="TenantId" Type="System.Int16" DbType="SmallInt NOT NULL" CanBeNull="false" />
+      <Column Name="Payload" Type="System.String" DbType="VarChar(MAX) NOT NULL" CanBeNull="false" />
+      <Column Name="Priority" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+    </ElementType>
+  </Function>
+  <Function Name="jobs.usp_Enqueue" Method="usp_Enqueue">
+    <Parameter Name="TypeId" Parameter="typeId" Type="System.Byte" DbType="TinyInt" />
+    <Parameter Name="Payload" Parameter="payload" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="TenantId" Parameter="tenantId" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="PrincipalId" Parameter="principalId" Type="System.Int16" DbType="SmallInt" />
+    <Parameter Name="Priority" Parameter="priority" Type="System.Byte" DbType="TinyInt" />
+    <Return Type="System.Int32" />
+  </Function>
+</Database>

@@ -39,6 +39,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>packages\EntityFramework.6.0.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.VisualStudio.QualityTools.LoadTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.VisualStudio.QualityTools.WebTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
@@ -46,7 +52,10 @@
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Transactions" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -55,13 +64,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="IPriorityQueue.cs" />
-    <Compile Include="QueueModel.cs">
-      <DependentUpon>QueueModel.dbml</DependentUpon>
-    </Compile>
-    <Compile Include="QueueModel.designer.cs">
+    <Compile Include="Model.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>QueueModel.dbml</DependentUpon>
+      <DependentUpon>Model.dbml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Settings.Designer.cs">
@@ -71,12 +77,13 @@
     </Compile>
     <Compile Include="QueueTests.cs" />
     <Compile Include="StaticRandom.cs" />
+    <Compile Include="UnitTest1.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="QueueModel.dbml">
+    <None Include="Model.dbml">
       <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>QueueModel.designer.cs</LastGenOutput>
+      <LastGenOutput>Model.designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
     <None Include="Queue.loadtest">
@@ -93,12 +100,12 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="QueueModel.dbml.layout">
-      <DependentUpon>QueueModel.dbml</DependentUpon>
-    </None>
+    <Content Include="PriorityQueue.sql" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="PriorityQueue.sql" />
+    <None Include="Model.dbml.layout">
+      <DependentUpon>Model.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">
