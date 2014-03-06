@@ -1,19 +1,10 @@
 ﻿using System;
-using System.Diagnostics;
 using System.Linq;
-using System.Text;
-using System.Collections.Generic;
-using System.Threading;
 using System.Transactions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace nv.PriorityQueue
 {
-    interface IPriorityQueue {
-        public IEnumerable<object o> Dequeue();
-        public long Enqueue(object o);    
-    }
-
     [TestClass]
     public class QueueTests
     {
@@ -22,7 +13,11 @@ namespace nv.PriorityQueue
         {
             using (var c = new QueueContext())
             {
-                c.Enqueue((byte)StaticRandom.Next(1, 128), (short)StaticRandom.Next(1, 8), Guid.NewGuid().ToString());
+                var type = (byte)StaticRandom.Next(1, 200);
+                var tenant = (short) StaticRandom.Next(1, 10000);
+                var principal = (short) StaticRandom.Next(1, 10000);
+                var priority = (byte) StaticRandom.Next(1, 255);
+                c.Enqueue(type, Guid.NewGuid().ToString(), tenant, principal, priority);
             }
         }
 
@@ -32,19 +27,9 @@ namespace nv.PriorityQueue
             using (var c = new QueueContext())
             {
                 using (var s = new TransactionScope(TransactionScopeOption.RequiresNew,
-                        new TransactionOptions() {IsolationLevel = IsolationLevel.ReadCommitted}))
+                        new TransactionOptions {IsolationLevel = IsolationLevel.ReadCommitted}))
                 {                    
-                    var workBatch = c.Dequeue();
-
-                    foreach (var w in workBatch)
-                    {
-                        // do work
-                        if (w != null)
-                        {
-                            c.AcknowledgeCompletion(w.Id);
-                        }
-                    }
-
+                    c.Dequeue();                    
                     s.Complete();
                 }
             }

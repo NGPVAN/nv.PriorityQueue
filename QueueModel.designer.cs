@@ -62,25 +62,17 @@ namespace nv.PriorityQueue
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.usp_AcknowledgeCompletion")]
-		public int AcknowledgeCompletion([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MessageId", DbType="BigInt")] System.Nullable<long> messageId)
-		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), messageId);
-			return ((int)(result.ReturnValue));
-		}
-		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.usp_Dequeue")]
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="jobs.usp_Dequeue")]
 		public ISingleResult<usp_DequeueResult> Dequeue()
 		{
 			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())));
 			return ((ISingleResult<usp_DequeueResult>)(result.ReturnValue));
 		}
 		
-		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="dbo.usp_Enqueue")]
-		public int Enqueue([global::System.Data.Linq.Mapping.ParameterAttribute(Name="MessageTypeId", DbType="TinyInt")] System.Nullable<byte> messageTypeId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TenantId", DbType="SmallInt")] System.Nullable<short> tenantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Payload", DbType="VarChar(MAX)")] string payload)
+		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="jobs.usp_Enqueue")]
+		public void Enqueue([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TypeId", DbType="TinyInt")] System.Nullable<byte> typeId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Payload", DbType="VarChar(MAX)")] string payload, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TenantId", DbType="SmallInt")] System.Nullable<short> tenantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrincipalId", DbType="SmallInt")] System.Nullable<short> principalId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Priority", DbType="TinyInt")] System.Nullable<byte> priority)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), messageTypeId, tenantId, payload);
-			return ((int)(result.ReturnValue));
+			this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), typeId, payload, tenantId, principalId, priority);
 		}
 	}
 	
@@ -93,7 +85,7 @@ namespace nv.PriorityQueue
 		
 		private string _Payload;
 		
-		private int _Priority;
+		private byte _Priority;
 		
 		public usp_DequeueResult()
 		{
@@ -147,8 +139,8 @@ namespace nv.PriorityQueue
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="Int NOT NULL")]
-		public int Priority
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Priority", DbType="TinyInt NOT NULL")]
+		public byte Priority
 		{
 			get
 			{

@@ -1,0 +1,7 @@
+C:\nv.PriorityQueue\obj\Debug\nv.PriorityQueue.csprojResolveAssemblyReference.cache
+C:\nv.PriorityQueue\bin\Debug\Queue.loadtest
+C:\nv.PriorityQueue\bin\Debug\nv.PriorityQueue.dll.config
+C:\nv.PriorityQueue\bin\Debug\nv.PriorityQueue.dll
+C:\nv.PriorityQueue\bin\Debug\nv.PriorityQueue.pdb
+C:\nv.PriorityQueue\obj\Debug\nv.PriorityQueue.dll
+C:\nv.PriorityQueue\obj\Debug\nv.PriorityQueue.pdb
