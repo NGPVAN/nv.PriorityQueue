@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QueueDemo" Class="ModelDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QueueDemo" Class="PriorityQueueModel" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="AppSettings" ConnectionString="Data Source=.;Initial Catalog=QueueDemo;Integrated Security=True" SettingsObjectName="nv.PriorityQueue.Properties.Settings" SettingsPropertyName="QueueDemoConnectionString" Provider="System.Data.SqlClient" />
   <Table Name="jobs.Type" Member="Types">
     <Type Name="Type">
@@ -15,8 +15,8 @@
     </ElementType>
   </Function>
   <Function Name="jobs.usp_Enqueue" Method="usp_Enqueue">
-    <Parameter Name="TypeId" Parameter="typeId" Type="System.Byte" DbType="TinyInt" />
     <Parameter Name="Payload" Parameter="payload" Type="System.String" DbType="VarChar(MAX)" />
+    <Parameter Name="Type" Parameter="type" Type="System.String" DbType="VarChar(256)" />
     <Parameter Name="TenantId" Parameter="tenantId" Type="System.Int16" DbType="SmallInt" />
     <Parameter Name="PrincipalId" Parameter="principalId" Type="System.Int16" DbType="SmallInt" />
     <Parameter Name="Priority" Parameter="priority" Type="System.Byte" DbType="TinyInt" />

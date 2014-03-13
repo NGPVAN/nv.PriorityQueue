@@ -23,7 +23,7 @@ namespace nv.PriorityQueue
 	
 	
 	[global::System.Data.Linq.Mapping.DatabaseAttribute(Name="QueueDemo")]
-	public partial class ModelDataContext : System.Data.Linq.DataContext
+	public partial class PriorityQueueModel : System.Data.Linq.DataContext
 	{
 		
 		private static System.Data.Linq.Mapping.MappingSource mappingSource = new AttributeMappingSource();
@@ -35,31 +35,31 @@ namespace nv.PriorityQueue
     partial void DeleteType(Type instance);
     #endregion
 		
-		public ModelDataContext() : 
+		public PriorityQueueModel() : 
 				base(global::nv.PriorityQueue.Properties.Settings.Default.QueueDemoConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ModelDataContext(string connection) : 
+		public PriorityQueueModel(string connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ModelDataContext(System.Data.IDbConnection connection) : 
+		public PriorityQueueModel(System.Data.IDbConnection connection) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ModelDataContext(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public PriorityQueueModel(string connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
 		}
 		
-		public ModelDataContext(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
+		public PriorityQueueModel(System.Data.IDbConnection connection, System.Data.Linq.Mapping.MappingSource mappingSource) : 
 				base(connection, mappingSource)
 		{
 			OnCreated();
@@ -81,9 +81,9 @@ namespace nv.PriorityQueue
 		}
 		
 		[global::System.Data.Linq.Mapping.FunctionAttribute(Name="jobs.usp_Enqueue")]
-		public int usp_Enqueue([global::System.Data.Linq.Mapping.ParameterAttribute(Name="TypeId", DbType="TinyInt")] System.Nullable<byte> typeId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Payload", DbType="VarChar(MAX)")] string payload, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TenantId", DbType="SmallInt")] System.Nullable<short> tenantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrincipalId", DbType="SmallInt")] System.Nullable<short> principalId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Priority", DbType="TinyInt")] System.Nullable<byte> priority)
+		public int usp_Enqueue([global::System.Data.Linq.Mapping.ParameterAttribute(Name="Payload", DbType="VarChar(MAX)")] string payload, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Type", DbType="VarChar(256)")] string type, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="TenantId", DbType="SmallInt")] System.Nullable<short> tenantId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="PrincipalId", DbType="SmallInt")] System.Nullable<short> principalId, [global::System.Data.Linq.Mapping.ParameterAttribute(Name="Priority", DbType="TinyInt")] System.Nullable<byte> priority)
 		{
-			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), typeId, payload, tenantId, principalId, priority);
+			IExecuteResult result = this.ExecuteMethodCall(this, ((MethodInfo)(MethodInfo.GetCurrentMethod())), payload, type, tenantId, principalId, priority);
 			return ((int)(result.ReturnValue));
 		}
 	}

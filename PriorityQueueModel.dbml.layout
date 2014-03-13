@@ -1,9 +1,9 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 11, 8.5" name="Model">
-  <DataContextMoniker Name="/ModelDataContext" />
+  <DataContextMoniker Name="/PriorityQueueModel" />
   <nestedChildShapes>
     <classShape Id="77c5e6c3-71b3-42af-bf90-017b0b3a8acd" absoluteBounds="1.125, 1.25, 2, 1.1939925130208333">
-      <DataClassMoniker Name="/ModelDataContext/Type" />
+      <DataClassMoniker Name="/PriorityQueueModel/Type" />
       <nestedChildShapes>
         <elementListCompartment Id="a4c7da19-c876-41cc-949a-634a31386ce6" absoluteBounds="1.1400000000000001, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
